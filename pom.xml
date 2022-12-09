@@ -45,9 +45,7 @@
                         <configuration>
                             <archive>
                             <manifest>
-                                <mainClass>
-                                    Main
-                                </mainClass>
+                                <mainClass>foo.Program</mainClass>
                             </manifest>
                             </archive>
                             <descriptorRefs>
