@@ -1,0 +1,43 @@
+name: "Endor Labs Scan"
+description: "Scan your repository using the Endor Labs"
+author: "Jamie Scott"
+on:
+  pull_request:
+  push:
+  create:
+    type: tag
+inputs:
+  endor_namespace:
+    description: "The Endor Labs namespace"
+    required: true
+  endor_show_progress:
+    description: "Show the progress bar for scans"
+    default: "false"
+  endor_log_verbose:
+    description: "Make the log verbose"
+    default: "false"
+  endor_log_level:
+    description: "Set the log level of the application"
+    default: "info"
+  endor_scan_summary_output_type:
+    description: "Set the desired output format of the summary"
+    default: "table"
+  ci_run_tags:
+    description: "Comma-separated tags to identify the CI run"
+    default: "$GITHUB_ACTOR"
+  ci_run:
+    description: "true if this a CI run or false if this is a release tag creation"
+    default: "true"
+runs:
+  using: "docker"
+  image: "docker://us-central1-docker.pkg.dev/endor-ci/public/endorctl:v0.5.64"
+  args:
+  - scan
+  - --namespace=${{ inputs.endor_namespace }}
+  - --show-progress=${{ inputs.endor_show_progress }}
+  - --verbose=${{ inputs.endor_log_verbose }}
+  - --log-level=${{ inputs.endor_log_level }}
+  - --output-type=${{ inputs.endor_scan_summary_output_type }}
+  - --ci-run=${{ inputs.ci_run }}  
+  - --ci-run-tags=${{ inputs.ci_run_tags }}
+  - --path=/github/workspace
