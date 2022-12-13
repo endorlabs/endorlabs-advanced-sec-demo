@@ -30,7 +30,7 @@ inputs:
     default: "true"
 runs:
   using: "docker"
-  image: "docker://us-central1-docker.pkg.dev/endor-ci/public/endorctl:v0.5.64"
+  image: "docker://us-central1-docker.pkg.dev/endor-ci/public/endorctl:"$IMAGE_TAG""
   args:
   - scan
   - --namespace=${{ inputs.endor_namespace }}
