@@ -1,0 +1,15 @@
+name: Scan with Endor Labs
+on: push
+jobs:
+  endor-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run endorctl to scan for findings
+        uses: endorlabs/ci-demo-java@main
+        with:
+          endor_namespace: "demo"
+        env:
+          ENDOR_API_CREDENTIALS_KEY: ${{ secrets.ENDOR_API_CREDENTIALS_KEY }}
+          ENDOR_API_CREDENTIALS_SECRET: ${{ secrets.ENDOR_API_CREDENTIALS_SECRET }}
+          IMAGE_TAG: v0.5.60
