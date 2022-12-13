@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run endorctl to scan for findings
-        uses: endorlabs/ci-demo-java@main
+        uses: endorlabs/ci-commons-text-demo@main
         with:
           endor_namespace: "demo"
         env:
