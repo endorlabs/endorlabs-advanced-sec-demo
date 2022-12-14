@@ -31,6 +31,7 @@ inputs:
 runs:
   using: "docker"
   image: "docker://us-central1-docker.pkg.dev/endor-ci/public/endorctl:v0.5.64"
+  if: ${{ inputs.ci_run == 'true' }}
   args:
   - scan
   - --namespace=${{ inputs.endor_namespace }}
@@ -40,4 +41,13 @@ runs:
   - --output-type=${{ inputs.endor_scan_summary_output_type }}
   - --ci-run=${{ inputs.ci_run }}  
   - --ci-run-tags=${{ inputs.ci_run_tags }}
+  - --path=/github/workspace
+  else: 
+  args:
+  - scan
+  - --namespace=${{ inputs.endor_namespace }}
+  - --show-progress=${{ inputs.endor_show_progress }}
+  - --verbose=${{ inputs.endor_log_verbose }}
+  - --log-level=${{ inputs.endor_log_level }}
+  - --output-type=${{ inputs.endor_scan_summary_output_type }}
   - --path=/github/workspace
