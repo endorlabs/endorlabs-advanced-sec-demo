@@ -1,11 +1,6 @@
 name: "Endor Labs Scan"
 description: "Scan your repository using the Endor Labs"
 author: "Jamie Scott"
-on:
-  pull_request:
-  push:
-  create:
-    type: tag
 inputs:
   endor_namespace:
     description: "The Endor Labs namespace"
