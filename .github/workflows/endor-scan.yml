@@ -26,7 +26,7 @@ jobs:
           # remove the environment variables ENDOR_API_CREDENTIALS_KEY and ENDOR_API_CREDENTIALS_SECRET when using.
           #
           # ENDOR_GCP_CREDENTIALS_SERVICE_ACCOUNT: "endorlabs-federation@<insert-your-project>.iam.gserviceaccount.com"
-        if: github.event_name == "push" || github.event_name == "pull_request"
+        if: github.event_name == 'pull_request' || github.event_name == 'push'
       - name: Run endorctl to scan a release tag
         uses: endorlabs/ci-commons-text-demo@main
         with:
@@ -42,4 +42,4 @@ jobs:
           # remove the environment variables ENDOR_API_CREDENTIALS_KEY and ENDOR_API_CREDENTIALS_SECRET when using.
           #
           # ENDOR_GCP_CREDENTIALS_SERVICE_ACCOUNT: "endorlabs-federation@<insert-your-project>.iam.gserviceaccount.com"
-        if: github.event_name == "create" 
+        if: github.event_name == 'create'
