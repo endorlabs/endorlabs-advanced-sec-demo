@@ -43,3 +43,58 @@ jobs:
           #
           # ENDOR_GCP_CREDENTIALS_SERVICE_ACCOUNT: "endorlabs-federation@<insert-your-project>.iam.gserviceaccount.com"
         if: github.event_name == 'create'
+name: Endor Labs Scan
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  endor-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run endorctl to scan a CI run
+        uses: endorlabs/monorepo@main
+        with:
+        # Replace with your own Endor Labs namepsace.
+          endor_namespace: "demo"
+        env:
+          # The ENDOR_GCP_CREDENTIALS_SERVICE_ACCOUNT environment variable enables keyless authentication. 
+          # Replace endorlabs-federation@endor-ci.iam.gserviceaccount.com with your own a service account that has been setup 
+          # with workload identity federation. See the documentation for setting up keyless authentication.
+          # remove or leave commented the environment variables ENDOR_API_CREDENTIALS_KEY and ENDOR_API_CREDENTIALS_SECRET when using.
+          #
+          # ENDOR_GCP_CREDENTIALS_SERVICE_ACCOUNT: "endorlabs-federation@endor-ci.iam.gserviceaccount.com"
+          # Use the environment variables ENDOR_API_CREDENTIALS_KEY and ENDOR_API_CREDENTIALS_SECRET
+          # to authenticate to Endor Labs using an API Key. This is done using the repository secrets by default. We reccomend keyless authentication. 
+          # If you are using keyless authentication do not uncommented this or remove this.
+          ENDOR_API_CREDENTIALS_KEY: ${{ secrets.ENDOR_API_CREDENTIALS_KEY }}
+          ENDOR_API_CREDENTIALS_SECRET: ${{ secrets.ENDOR_API_CREDENTIALS_SECRET }}
+          # Set to false on create tag to specify a tracked release version of your code. This is done on create events by default to specify a release.
+          ENDOR_CI_RUN: "true"
+          # Use CI Run Tags as search parameters if you'd like to review CI Scan Results in Endor Labs.
+          ENDOR_CI_RUN_TAGS: Actor:${{ github.actor }},Run_ID:${{ github.run_id	}},Run_Number:${{ github.run_id	}},Ref:${{ github.ref	}},PR_NUMBER:${{github.event.issue.number}}
+        if: github.event_name == 'pull_request' || github.event_name == 'push'
+      - name: Run endorctl to scan a release tag
+        uses: endorlabs/monorepo@main
+        with:
+          endor_namespace: "demo"
+        env:
+          # This ENDOR_GCP_CREDENTIALS_SERVICE_ACCOUNT environment variable enables keyless authentication. 
+          # Replace endorlabs-federation@endor-ci.iam.gserviceaccount.com with your own a service account that has been setup 
+          # with workload identity federation. See the documentation for setting up keyless authentication.
+          # remove or leave commented the environment variables ENDOR_API_CREDENTIALS_KEY and ENDOR_API_CREDENTIALS_SECRET when using.
+          #
+          # ENDOR_GCP_CREDENTIALS_SERVICE_ACCOUNT: "endorlabs-federation@endor-ci.iam.gserviceaccount.com"
+          #
+          # Use the environment variables ENDOR_API_CREDENTIALS_KEY and ENDOR_API_CREDENTIALS_SECRET
+          # to authenticate to Endor Labs using an API Key. This is done using the repository secrets by default. We reccomend keyless authentication. 
+          # If you are using keyless authentication do not uncommented this or remove this.
+          #
+          ENDOR_API_CREDENTIALS_KEY: ${{ secrets.ENDOR_API_CREDENTIALS_KEY }}
+          ENDOR_API_CREDENTIALS_SECRET: ${{ secrets.ENDOR_API_CREDENTIALS_SECRET }}
+          #
+          # Set to false on create tag to specify a tracked release version of your code. This is done on tags by default to specify a release.
+          ENDOR_CI_RUN: "false"
+        if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/')
