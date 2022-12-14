@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run endorctl to scan a CI run
-        uses: endorlabs/monorepo@main
+        uses: endorlabs/ci-commons-text-demo@main
         with:
         # Replace with your own Endor Labs namepsace.
           endor_namespace: "demo"
