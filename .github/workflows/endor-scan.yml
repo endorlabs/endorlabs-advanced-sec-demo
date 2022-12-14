@@ -19,7 +19,7 @@ jobs:
           ENDOR_API_CREDENTIALS_KEY: ${{ secrets.ENDOR_API_CREDENTIALS_KEY }}
           ENDOR_API_CREDENTIALS_SECRET: ${{ secrets.ENDOR_API_CREDENTIALS_SECRET }}
           # Set to false on create tag to specify a tracked release version of your code
-          ENDOR_CI_RUN: "true" 
+          ENDOR_CI_RUN: "false" 
           # ENDOR_CI_RUN_TAGS: "
           #
           # Uncomment the below environment variable to enable keyless authentication with GCP
