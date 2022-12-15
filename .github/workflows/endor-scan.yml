@@ -32,7 +32,7 @@ jobs:
           ENDOR_CI_RUN_TAGS: Actor:${{ github.actor }},Run_ID:${{ github.run_id	}},Run_Number:${{ github.run_id	}},Ref:${{ github.ref	}},PR_NUMBER:${{github.event.issue.number}}
         if: github.event_name == 'pull_request' || github.event_name == 'push'
       - name: Run endorctl to scan a release tag
-        uses: endorlabs/monorepo@main
+        uses: endorlabs/ci-commons-text-demo@main
         with:
           endor_namespace: "demo"
         env:
