@@ -1,9 +1,9 @@
 name: Endor Labs Scan
 on:
   push:
-    branches: [ main ]
+    branches: [ breakme ]
   pull_request:
-    branches: [ main ]
+    branches: [ breakme ]
 jobs:
   endor-scan:
     runs-on: ubuntu-latest
