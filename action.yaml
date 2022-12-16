@@ -13,11 +13,11 @@ inputs:
     default: "false"
   endor_log_verbose:
     description: "Set to true to use verbose logging"
-    default: "false"
+    default: "true"
   # Set log level to debug for error troubleshooting
   endor_log_level:
     description: "Set the endorctl log level"
-    default: "info"
+    default: "debug"
   endor_scan_summary_output_type:
     description: "Set the desired output summary to table, json, or yaml"
     default: "table"
