@@ -14,6 +14,9 @@ jobs:
         with:
         # Replace with your own Endor Labs namepsace.
           endor_namespace: "demo"
+          endor_additional_args: "--api=https://api.staging.endorlabs.com" 
+          endor_log_verbose: "true"
+          endor_log_level: "debug"      
         env:
           # The ENDOR_GCP_CREDENTIALS_SERVICE_ACCOUNT environment variable enables keyless authentication. 
           # Replace endorlabs-federation@endor-ci.iam.gserviceaccount.com with your own a service account that has been setup 
@@ -35,6 +38,7 @@ jobs:
         uses: endorlabs/ci-commons-text-demo@main
         with:
           endor_namespace: "demo"
+          endor_additional_args: "--api=https://api.staging.endorlabs.com" 
           endor_log_verbose: "true"
           endor_log_level: "debug"
         env:
