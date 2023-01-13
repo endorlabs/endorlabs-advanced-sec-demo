@@ -29,7 +29,7 @@ inputs:
     description: "Use this to add your own custom arguments to endorctl"
 runs:
   using: "docker"
-  image: "docker://us-central1-docker.pkg.dev/endor-ci/public/endorctl:v0.5.67"
+  image: "docker://us-central1-docker.pkg.dev/endor-ci/public/endorctl:v0.5.90"
   args:
   - scan
   - --namespace=${{ inputs.endor_namespace }}
