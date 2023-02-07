@@ -17,8 +17,8 @@ jobs:
       - name: Run endorctl to scan a pull request.
         uses: endorlabs/actions@main
         with:
-          api_key: ${{ secrets.ENDOR_API_KEY }}
-          api_secret: ${{ secrets.ENDOR_API_SECRET }}
+          api_key: ${{ secrets.ENDOR_API_CREDENTIALS_KEY }}
+          api_secret: ${{ secrets.ENDOR_API_CREDENTIALS_SECRET }}
           # gcp_service_account: ${{ secrets.CI_SERVICE_ACCOUNT }}
           namespace: "demo"
         env:
@@ -30,8 +30,8 @@ jobs:
       - name: Scan a push to the default branch
         uses: endorlabs/actions@main
         with:
-          api_key: ${{ secrets.ENDOR_API_KEY }}
-          api_secret: ${{ secrets.ENDOR_API_SECRET }}
+          api_key: ${{ secrets.ENDOR_API_CREDENTIALS_KEY }}
+          api_secret: ${{ secrets.ENDOR_API_CREDENTIALS_SECRET }}
           # gcp_service_account: ${{ secrets.CI_SERVICE_ACCOUNT }}
           namespace: "demo"
         env:
@@ -40,8 +40,8 @@ jobs:
       - name: Run endorctl to scan a release tag
         uses: endorlabs/actions@main
         with:
-          api_key: ${{ secrets.ENDOR_API_KEY }}
-          api_secret: ${{ secrets.ENDOR_API_SECRET }}
+          api_key: ${{ secrets.ENDOR_API_CREDENTIALS_KEY }}
+          api_secret: ${{ secrets.ENDOR_API_CREDENTIALS_SECRET }}
           # gcp_service_account: ${{ secrets.CI_SERVICE_ACCOUNT }}
           namespace: "demo"
         env:
