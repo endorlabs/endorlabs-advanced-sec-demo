@@ -20,7 +20,7 @@ jobs:
           distribution: 'microsoft'
           java-version: '17'
       - name: Compile Package
-        run: mvn clean install
+        run: mvn clean install -Dskiptests
       - name: Run endorctl to scan a pull request.
         uses: endorlabs/actions@main
         with:
