@@ -19,10 +19,8 @@ jobs:
         with:
           distribution: 'microsoft'
           java-version: '17'
-      - name: Compile Package
-        run: mvn clean install -Dskiptests
       - name: Run endorctl to scan a pull request.
-        uses: endorlabs/actions@main
+        uses: endorlabs/github-action@main
         with:
           api_key: ${{ secrets.ENDOR_API_CREDENTIALS_KEY }}
           api_secret: ${{ secrets.ENDOR_API_CREDENTIALS_SECRET }}
@@ -35,7 +33,7 @@ jobs:
           ENDOR_CI_RUN_TAGS: Actor:${{ github.actor }},Run_ID:${{ github.run_id	}},Run_Number:${{ github.run_id	}},Ref:${{ github.ref	}}
         if: github.event_name == 'pull_request' 
       - name: Scan a push to the default branch
-        uses: endorlabs/actions@main
+        uses: endorlabs/github-action@main
         with:
           api_key: ${{ secrets.ENDOR_API_CREDENTIALS_KEY }}
           api_secret: ${{ secrets.ENDOR_API_CREDENTIALS_SECRET }}
@@ -45,7 +43,7 @@ jobs:
           ENDOR_CI_RUN: "false"
         if: github.event_name == 'push'
       - name: Run endorctl to scan a release tag
-        uses: endorlabs/actions@main
+        uses: endorlabs/github-action@main
         with:
           api_key: ${{ secrets.ENDOR_API_CREDENTIALS_KEY }}
           api_secret: ${{ secrets.ENDOR_API_CREDENTIALS_SECRET }}
