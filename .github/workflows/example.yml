@@ -10,10 +10,8 @@ jobs:
         with:
           distribution: 'microsoft'
           java-version: '17'
-      - name: Compile Package
-        run: mvn clean install
       - name: Scan with Endor Labs
-        uses: endorlabs/actions@main
+        uses: endorlabs/github-action@main
         with:
           api_key: ${{ secrets.ENDOR_API_KEY }}
           api_secret: ${{ secrets.ENDOR_API_SECRET }}
