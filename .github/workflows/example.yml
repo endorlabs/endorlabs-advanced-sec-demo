@@ -21,6 +21,7 @@ jobs:
         env:
           ENDOR_API_CREDENTIALS_KEY: ${{ secrets.ENDOR_API_CREDENTIALS_KEY }}
           ENDOR_API_CREDENTIALS_SECRET: ${{ secrets.ENDOR_API_CREDENTIALS_SECRET }}
+          ENDOR_NAMESPACE: "demo"
         run: |
           curl https://storage.googleapis.com/endorlabs/v0.5.103/binaries/endorctl_v0.5.103_linux_amd64 -o endorctl
           chmod +x ./endorctl
