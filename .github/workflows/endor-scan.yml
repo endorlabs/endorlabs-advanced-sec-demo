@@ -3,10 +3,10 @@ on:
   push:
     branches: [ main ]
 jobs:
-# This is our core Demo Project
-  create_project_app-java-demo:
+  ci-commons-demo-scan:
     permissions:
-      id-token: write # This is required for requesting the JWT
+      id-token: write
+      contents: read # This is required for requesting the JWT
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
