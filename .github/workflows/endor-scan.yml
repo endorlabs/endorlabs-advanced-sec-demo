@@ -21,8 +21,6 @@ jobs:
       with:
         distribution: 'microsoft'
         java-version: '17'
-    - name: Build Package
-      run: mvn clean install -Dskiptests
     - name: Run endorctl
       uses: endorlabs/github-action@b51bd06466b545f01a6ac788e3e1147695d3936c
       with:
