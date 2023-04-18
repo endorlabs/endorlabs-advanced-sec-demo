@@ -25,8 +25,6 @@ jobs:
       uses: endorlabs/github-action@b51bd06466b545f01a6ac788e3e1147695d3936c
       with:
         namespace: "demo"
-        api: "https://api.staging.endorlabs.com"
-        enable_github_action_token: "true"
         sarif_file: findings.sarif
     - name: Upload SARIF to github
       uses: github/codeql-action/upload-sarif@9885f86fab4879632b7e44514f19148225dfbdcd
