@@ -10,6 +10,7 @@ jobs:
     permissions:
       security-events: write # Used to upload sarif artifact to GitHub
       contents: read 
+      actions: read
       id-token: write # Used for keyless authentication to Endor Labs
     runs-on: ubuntu-latest
     steps:
