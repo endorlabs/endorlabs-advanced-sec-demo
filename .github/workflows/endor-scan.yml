@@ -1,23 +1,37 @@
-name: Endor Labs Scan
+name: Scan
+
+
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
-  ci-commons-demo-scan:
+  scan:
     permissions:
-      id-token: write
-      contents: read # This is required for requesting the JWT
+      security-events: write # Used to upload sarif artifact to GitHub
+      contents: read 
+      id-token: write # Used for keyless authentication to Endor Labs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'microsoft'
-          java-version: '17'
-      - uses: endorlabs/github-action@main
-        with:
-          namespace: demo-playground
-          scan_summary_output_type: "table"
-          ci_run: "false"
-          enable_github_action_token: "true"
-          additional_args: "--enable=git,github,analytics"
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'microsoft'
+        java-version: '17'
+    - name: Compile Package
+      run: mvn clean install
+    - name: Run endorctl
+      uses: endorlabs/github-action@b51bd06466b545f01a6ac788e3e1147695d3936c
+      with:
+        namespace: "demo"
+        api: "https://api.staging.endorlabs.com"
+        enable_github_action_token: "true"
+        sarif_file: findings.sarif
+    - name: Upload SARIF to github
+      uses: github/codeql-action/upload-sarif@9885f86fab4879632b7e44514f19148225dfbdcd
+      with:
+        sarif_file: findings.sarif
