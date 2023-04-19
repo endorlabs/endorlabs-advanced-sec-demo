@@ -23,11 +23,21 @@ jobs:
         java-version: '17'
     - name: Build Package
       run: mvn clean install -Dcheckstyle.skip=true -Djacoco.skip=true -Dmaven.test.skip=true -DskipSource=true -DskipTests=true -Dcobertura.skip=true -Dduplicate-finder.skip=true -Denforcer.skip=true -Dlicense.skipAddThirdParty=true -Dgpg.skip=true -Drat.skip=true -Dmaven.javadoc.skip=true -Dlicense.skip=true
-    - name: Run endorctl
-      uses: endorlabs/github-action@b51bd06466b545f01a6ac788e3e1147695d3936c
+    - name: Endor Labs Scan Pull Request
+      if: github.event_name == 'pull_request'
+      uses: endorlabs/github-action@main
       with:
         namespace: "demo"
         scan_summary_output_type: "table"
+        ci_run: "true"
+        sarif_file: findings.sarif
+    - name: Endor Labs Scan Push to main
+      if: github.event_name == 'push'
+      uses: endorlabs/github-action@main
+      with:
+        namespace: "demo"
+        scan_summary_output_type: "table"
+        ci_run: "false"
         sarif_file: findings.sarif
     - name: Upload SARIF to github
       uses: github/codeql-action/upload-sarif@9885f86fab4879632b7e44514f19148225dfbdcd
