@@ -36,6 +36,7 @@ jobs:
       uses: endorlabs/github-action@main
       with:
         namespace: "demo"
+        api: "https://api.staging.endorlabs.com"
         scan_summary_output_type: "table"
         ci_run: "false"
         sarif_file: findings.sarif
