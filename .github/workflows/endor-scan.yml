@@ -21,8 +21,6 @@ jobs:
       with:
         distribution: 'microsoft'
         java-version: '17'
-    - name: Build Package
-      run: mvn clean install -Dcheckstyle.skip=true -Djacoco.skip=true -Dmaven.test.skip=true -DskipSource=true -DskipTests=true -Dcobertura.skip=true -Dduplicate-finder.skip=true -Denforcer.skip=true -Dlicense.skipAddThirdParty=true -Dgpg.skip=true -Drat.skip=true -Dmaven.javadoc.skip=true -Dlicense.skip=true
     - name: Endor Labs Scan Pull Request
       if: github.event_name == 'pull_request'
       uses: endorlabs/github-action@main
