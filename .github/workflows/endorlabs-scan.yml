@@ -42,9 +42,9 @@ jobs:
         sarif_file: 'findings.sarif'
         
     - name: Endor Labs Scan for release
-      if: github.event_name == 'push' || github.event.inputs.ci_run != true
+      if: github.event_name == 'push' || github.event.inputs.ci_run == false
       id: endor_scan_release
-      uses: endorlabs/github-action@main
+      uses: endorlabs/github-action@timed-run
       with:
         namespace: 'demo'
         api: 'https://api.staging.endorlabs.com'
