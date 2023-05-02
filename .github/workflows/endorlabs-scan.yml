@@ -50,6 +50,7 @@ jobs:
         api: 'https://api.staging.endorlabs.com'
         scan_summary_output_type: 'table'
         ci_run: false
+        time_run: true
         sarif_file: 'findings.sarif'
         
     - name: Upload SARIF to github
