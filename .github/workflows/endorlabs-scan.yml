@@ -33,7 +33,7 @@ jobs:
     - name: Endor Labs Scan for PR
       if: github.event_name == 'pull_request' || github.event.inputs.ci_run == true
       id: endor_scan_pr
-      uses: endorlabs/github-action@main
+      uses: endorlabs/github-action@timed-run
       with:
         namespace: 'demo'
         api: 'https://api.staging.endorlabs.com'
